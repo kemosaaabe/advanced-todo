@@ -10,8 +10,13 @@
   border-radius: 1rem;
 
   cursor: pointer;
+  transition: 0.3s ease;
 }
 
 .button:focus {
   outline: none;
+}
+
+.button:hover {
+  box-shadow: 0 2px 6px 1px rgba(0, 0, 0, 0.15);
 }

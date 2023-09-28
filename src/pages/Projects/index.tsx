@@ -1,5 +1,8 @@
 import React from "react";
 
+import { addProject } from "../../store/actions/projects";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+
 import Project from "../../components/Project";
 import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
@@ -8,6 +11,7 @@ import styles from "./styles.module.css";
 
 const Projects = () => {
   const [visibleModal, setVisibleModal] = React.useState(false);
+  const projects = useAppSelector((state) => state.projects.projects);
 
   const onCloseModal = () => {
     setVisibleModal(!visibleModal);
@@ -20,11 +24,9 @@ const Projects = () => {
       <h1 className={styles.title}>Проекты</h1>
       <Button onClick={onCloseModal}>Создать проект</Button>
       <div className={styles.projects}>
-        {Array(10)
-          .fill(null)
-          .map((project, index) => (
-            <Project key={index} />
-          ))}
+        {projects.map((project) => (
+          <Project title={project.title} key={project.id} />
+        ))}
       </div>
     </div>
   );

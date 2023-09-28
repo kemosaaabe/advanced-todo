@@ -1,7 +1,13 @@
+import { FC } from "react";
+
 import styles from "./styles.module.css";
 
-const Project = () => {
-  return <div className={styles.project}>Project</div>;
+interface ProjectProps {
+  title: string;
+}
+
+const Project: FC<ProjectProps> = ({ title }) => {
+  return <div className={styles.project}>{title}</div>;
 };
 
 export default Project;

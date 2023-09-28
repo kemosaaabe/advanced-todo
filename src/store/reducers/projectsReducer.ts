@@ -1,6 +1,8 @@
 import { ProjectActionTypes, ProjectAction, ProjectState } from "../types";
 
-const initialState: ProjectState = { projects: [] };
+const initialState: ProjectState = {
+  projects: [{ id: "1", title: "Проект 1" }],
+};
 
 const projectsReducer = (
   state = initialState,
