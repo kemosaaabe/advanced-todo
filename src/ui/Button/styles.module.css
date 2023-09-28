@@ -5,7 +5,7 @@
   font-weight: 500;
 
   background-color: var(--color-puce);
-  color: #fff;
+  color: var(--color-white);
   border: none;
   border-radius: 1rem;
 

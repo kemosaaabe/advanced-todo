@@ -18,6 +18,7 @@
   /* Colors */
   --color-lavender: #d9d0de;
   --color-puce: #bc8da0;
+  --color-white: #fff;
 }
 
 * {
@@ -27,5 +28,7 @@
 }
 
 body {
+  padding: 2rem;
+
   font-family: var(--font-sans);
 }

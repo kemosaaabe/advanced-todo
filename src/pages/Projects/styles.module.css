@@ -1,4 +1,6 @@
 .container {
+  position: relative;
+
   max-width: var(--max-width);
   margin: 1.5rem auto;
 }

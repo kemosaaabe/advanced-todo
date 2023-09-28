@@ -1,0 +1,45 @@
+.container {
+  position: fixed;
+  inset: 0;
+}
+
+.cover {
+  position: fixed;
+  inset: 0;
+
+  background-color: var(--color-lavender);
+  opacity: 0.7;
+}
+
+.modal {
+  position: relative;
+  top: 50%;
+  left: 50%;
+
+  max-width: var(--max-width);
+  min-height: 18.75rem;
+  padding: 1rem 2rem;
+
+  background-color: var(--color-white);
+  border-radius: 1rem;
+
+  transform: translate(-50%, -50%);
+}
+
+.closeIcon {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+
+  padding: 0.25rem;
+
+  border-radius: 0.25rem;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.closeIcon:hover {
+  background-color: var(--color-lavender);
+  opacity: 0.6;
+}
