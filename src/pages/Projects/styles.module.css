@@ -19,3 +19,15 @@
   flex-direction: column;
   gap: 1.5rem;
 }
+
+/* Modal */
+
+.titleModal {
+  margin-bottom: 1rem;
+
+  font-family: var(--font-montserrat);
+}
+
+.buttonAdd {
+  margin-top: 1.5rem;
+}

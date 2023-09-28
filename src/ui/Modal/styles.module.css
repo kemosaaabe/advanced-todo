@@ -17,7 +17,6 @@
   left: 50%;
 
   max-width: var(--max-width);
-  min-height: 18.75rem;
   padding: 1rem 2rem;
 
   background-color: var(--color-white);
