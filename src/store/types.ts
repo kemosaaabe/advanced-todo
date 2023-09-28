@@ -4,14 +4,14 @@ export enum ProjectActionTypes {
   EDIT_PROJECT = "EDIT_PROJECT",
 }
 
-export interface Project {
+export interface IProject {
   id: string;
   title: string;
 }
 
 export interface AddProjectAction {
   type: ProjectActionTypes.ADD_PROJECT;
-  payload: Project;
+  payload: IProject;
 }
 
 export interface RemoveProjectAction {
@@ -30,5 +30,5 @@ export type ProjectAction =
   | EditProjectAction;
 
 export interface ProjectState {
-  projects: Project[];
+  projects: IProject[];
 }

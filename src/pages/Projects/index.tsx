@@ -59,7 +59,7 @@ const Projects = () => {
 
       <div className={styles.projects}>
         {projects.map((project) => (
-          <Project title={project.title} key={project.id} />
+          <Project project={project} key={project.id} />
         ))}
       </div>
     </div>

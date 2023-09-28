@@ -3,10 +3,10 @@ import {
   AddProjectAction,
   EditProjectAction,
   RemoveProjectAction,
-  Project,
+  IProject,
 } from "../types";
 
-export const addProject = (project: Project): AddProjectAction => ({
+export const addProject = (project: IProject): AddProjectAction => ({
   type: ProjectActionTypes.ADD_PROJECT,
   payload: project,
 });
