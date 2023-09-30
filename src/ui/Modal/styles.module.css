@@ -1,6 +1,8 @@
 .container {
   position: fixed;
   inset: 0;
+
+  padding: 2rem;
 }
 
 .cover {

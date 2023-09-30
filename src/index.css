@@ -33,3 +33,15 @@ body {
 
   font-family: var(--font-sans);
 }
+
+@media (max-width: 768px) {
+  html {
+    font-size: 92.5%;
+  }
+}
+
+@media (max-width: 360px) {
+  html {
+    font-size: 82.5%;
+  }
+}
