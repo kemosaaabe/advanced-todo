@@ -40,6 +40,7 @@ const Projects = () => {
             <h2 className={styles.titleModal}>Добавить проект</h2>
             <Input
               value={value}
+              placeholder="Название проекта"
               onChange={(e) => setValue(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {

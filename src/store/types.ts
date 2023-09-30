@@ -54,9 +54,9 @@ export interface ITask {
   title: string;
   description: string;
   created: Date;
-  workTime: Date;
-  finished: Date;
-  priority: TaskPriority;
+  workTime: Date | null;
+  finished: Date | null;
+  priority: TaskPriority | null;
   status: TaskStatus;
   subtasks?: ITask[];
 }

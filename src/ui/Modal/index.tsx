@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import styles from "./styles.module.css";
 
 interface ModalProps {
-  children: React.ReactNode[];
+  children: React.ReactNode | React.ReactNode[];
   onClose: () => void;
 }
 
