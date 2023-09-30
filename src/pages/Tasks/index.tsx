@@ -10,8 +10,8 @@ import styles from "./styles.module.css";
 const Tasks = () => {
   const { projectId } = useParams();
 
-  const project = useAppSelector((state) =>
-    state.projects.projects.find((project) => project.id === projectId)
+  const tasks = useAppSelector((state) => state.tasks.tasks).filter(
+    (task) => task.projectId === projectId
   );
 
   return (
@@ -29,30 +29,30 @@ const Tasks = () => {
         <div className={styles.col}>
           <h2 className={styles.titleCol}>Queue</h2>
           <div className={styles.colInner}>
-            {Array(10)
-              .fill(null)
-              .map(() => (
-                <Task />
+            {tasks
+              .filter((task) => task.status === "queue")
+              .map((task) => (
+                <Task task={task} key={task.id} />
               ))}
           </div>
         </div>
         <div className={styles.col}>
           <h2 className={styles.titleCol}>Development</h2>
           <div className={styles.colInner}>
-            {Array(10)
-              .fill(null)
-              .map(() => (
-                <Task />
+            {tasks
+              .filter((task) => task.status === "dev")
+              .map((task) => (
+                <Task task={task} key={task.id} />
               ))}
           </div>
         </div>
         <div className={styles.col}>
           <h2 className={styles.titleCol}>Done</h2>
           <div className={styles.colInner}>
-            {Array(10)
-              .fill(null)
-              .map(() => (
-                <Task />
+            {tasks
+              .filter((task) => task.status === "done")
+              .map((task) => (
+                <Task task={task} key={task.id} />
               ))}
           </div>
         </div>

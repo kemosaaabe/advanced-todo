@@ -1,3 +1,5 @@
+// Project
+
 export enum ProjectActionTypes {
   ADD_PROJECT = "ADD_PROJECT",
   REMOVE_PROJECT = "REMOVE_PROJECT",
@@ -31,4 +33,51 @@ export type ProjectAction =
 
 export interface ProjectState {
   projects: IProject[];
+}
+
+// Task
+
+export enum TaskActionTypes {
+  ADD_TASK = "ADD_TASK",
+  REMOVE_TASK = "REMOVE_TASK",
+  EDIT_TASK = "EDIT_TASK",
+}
+
+// Добавить еще вложенные файлы
+
+export type TaskPriority = "low" | "medium" | "high";
+export type TaskStatus = "queue" | "dev" | "done";
+
+export interface ITask {
+  id: string;
+  projectId: string;
+  title: string;
+  description: string;
+  created: Date;
+  workTime: Date;
+  finished: Date;
+  priority: TaskPriority;
+  status: TaskStatus;
+  subtasks?: ITask[];
+}
+
+export interface AddTaskAction {
+  type: TaskActionTypes.ADD_TASK;
+  payload: ITask;
+}
+
+export interface RemoveTaskAction {
+  type: TaskActionTypes.REMOVE_TASK;
+  payload: string;
+}
+
+export interface EditTaskAction {
+  type: TaskActionTypes.EDIT_TASK;
+  payload: ITask;
+}
+
+export type TaskAction = AddTaskAction | RemoveTaskAction | EditTaskAction;
+
+export interface TaskState {
+  tasks: ITask[];
 }
