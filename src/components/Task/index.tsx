@@ -11,7 +11,7 @@ import Comments from "../Comments";
 
 import { useAppDispatch } from "../../app/hooks";
 import { editTask, removeTask } from "../../store/actions/tasks";
-import { ITask } from "../../store/types";
+import { ITask, TaskPriority } from "../../store/types";
 
 import styles from "./styles.module.css";
 import { createPortal } from "react-dom";
@@ -59,6 +59,16 @@ const Task: FC<TaskProps> = ({ task }) => {
     onCloseModal();
   };
 
+  const onPrioritySelect = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    const priority = target.dataset.priority as TaskPriority;
+
+    if (!priority) return;
+    if (task.priority === priority) return;
+
+    dispatch(editTask({ ...task, priority: priority }));
+  };
+
   return (
     <div>
       {visibleModal &&
@@ -81,12 +91,21 @@ const Task: FC<TaskProps> = ({ task }) => {
                 </div>
                 <div className={styles.block}>
                   <img src="/assets/images/priority.svg" alt="priority" />
-                  Выбрать приоритет:
-                  <div className={`${styles.priorityBall} ${styles.low}`}></div>
-                  <div className={`${styles.priorityBall} ${styles.md}`}></div>
-                  <div
-                    className={`${styles.priorityBall} ${styles.high}`}
-                  ></div>
+                  Выбрать приоритет ({task.priority}):
+                  <div className={styles.priorities} onClick={onPrioritySelect}>
+                    <div
+                      data-priority="low"
+                      className={`${styles.priorityBall} ${styles.low}`}
+                    ></div>
+                    <div
+                      data-priority="md"
+                      className={`${styles.priorityBall} ${styles.md}`}
+                    ></div>
+                    <div
+                      data-priority="high"
+                      className={`${styles.priorityBall} ${styles.high}`}
+                    ></div>
+                  </div>
                 </div>
               </div>
               <div className={styles.col}>
@@ -134,6 +153,7 @@ const Task: FC<TaskProps> = ({ task }) => {
         )}
       <div
         ref={drag}
+        data-priority={task.priority}
         className={`${styles.task} ${isDragging && styles.dragTask}`}
         onClick={onCloseModal}
       >

@@ -10,6 +10,18 @@
   cursor: pointer;
 }
 
+.task[data-priority="low"] {
+  background-color: rgba(var(--color-blue-rgb), 0.35);
+}
+
+.task[data-priority="md"] {
+  background-color: rgba(var(--color-orange-rgb), 0.35);
+}
+
+.task[data-priority="high"] {
+  background-color: rgba(var(--color-red-rgb), 0.35);
+}
+
 .dragTask {
   opacity: 0.35;
 }
@@ -50,6 +62,11 @@
 
 .attachFile {
   cursor: pointer;
+}
+
+.priorities {
+  display: flex;
+  gap: 0.35rem;
 }
 
 .priorityBall {
