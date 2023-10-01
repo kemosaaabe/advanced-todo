@@ -2,9 +2,21 @@
   margin-bottom: 3rem;
 }
 
+.commentsInner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  font-size: var(--size-md);
+}
+
 .title {
   margin-bottom: 1rem;
 
   font-family: var(--font-montserrat);
   font-weight: 600;
+}
+
+.buttonAdd {
+  margin-top: 1rem;
 }

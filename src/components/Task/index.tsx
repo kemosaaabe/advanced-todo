@@ -160,7 +160,7 @@ const Task: FC<TaskProps> = ({ task }) => {
             </div>
 
             <Subtasks parentTask={task} />
-            <Comments />
+            <Comments parentTask={task} />
 
             <Button onClick={() => onTaskDelete(task.id)}>
               Удалить задачу

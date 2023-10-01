@@ -43,8 +43,6 @@ export enum TaskActionTypes {
   EDIT_TASK = "EDIT_TASK",
 }
 
-// Добавить еще вложенные файлы
-
 export type TaskPriority = "low" | "medium" | "high";
 export type TaskStatus = "queue" | "dev" | "done";
 
@@ -55,7 +53,7 @@ export interface ITask {
   title: string;
   description: string;
   created: Date;
-  workTime: Date | null;
+  workTime: string | null;
   finished: Date | null;
   priority: TaskPriority | null;
   status: TaskStatus;
@@ -82,4 +80,44 @@ export type TaskAction = AddTaskAction | RemoveTaskAction | EditTaskAction;
 
 export interface TaskState {
   tasks: ITask[];
+}
+
+// Comment
+
+export enum CommentActionTypes {
+  ADD_COMMENT = "ADD_COMMENT",
+  REMOVE_COMMENT = "REMOVE_COMMENT",
+  EDIT_COMMENT = "EDIT_COMMENT",
+}
+
+export interface IComment {
+  id: string;
+  parentCommentId?: string;
+  taskId: string;
+  title: string;
+  subcomments: IComment[];
+}
+
+export interface AddCommentAction {
+  type: CommentActionTypes.ADD_COMMENT;
+  payload: IComment;
+}
+
+export interface EditCommentAction {
+  type: CommentActionTypes.EDIT_COMMENT;
+  payload: IComment;
+}
+
+export interface RemoveCommentAction {
+  type: CommentActionTypes.REMOVE_COMMENT;
+  payload: string;
+}
+
+export type CommentAction =
+  | AddCommentAction
+  | RemoveCommentAction
+  | EditCommentAction;
+
+export interface CommentState {
+  comments: IComment[];
 }

@@ -25,12 +25,32 @@ const TasksCol: FC<TaskColProps> = ({ tasks, title, status }) => {
 
     if (currentTask.status === status) return;
 
-    dispatch(editTask({ ...currentTask, status: status }));
+    dispatch(
+      editTask({
+        ...currentTask,
+        finished: null,
+        status: status,
+      })
+    );
 
     if (status === "done") {
+      dispatch(
+        editTask({
+          ...currentTask,
+          finished: new Date(),
+          status: status,
+        })
+      );
+
       if (currentTask.subtasks.length > 0) {
         currentTask.subtasks.forEach((task) =>
-          dispatch(editTask({ ...task, status: "done" }))
+          dispatch(
+            editTask({
+              ...task,
+              status: "done",
+              finished: new Date(),
+            })
+          )
         );
       }
     }

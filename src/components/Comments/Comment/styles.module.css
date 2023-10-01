@@ -1,0 +1,28 @@
+.commentResponse {
+  color: rgb(var(--color-blue-rgb));
+  font-size: var(--size-sm);
+}
+
+.commentResponse span {
+  cursor: pointer;
+}
+
+.commentText {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.commentText img {
+  cursor: pointer;
+}
+
+.titleModal {
+  margin-bottom: 1rem;
+
+  font-family: var(--font-montserrat);
+}
+
+.buttonAdd {
+  margin-top: 1.5rem;
+}
