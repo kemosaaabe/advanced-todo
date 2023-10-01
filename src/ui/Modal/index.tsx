@@ -8,17 +8,11 @@ interface ModalProps {
 }
 
 const Modal: FC<ModalProps> = ({ onClose, children }) => {
-  const onKeyDown = (e: KeyboardEvent) => {
-    if (e.code === "Escape") onClose();
-  };
-
   React.useLayoutEffect(() => {
     document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKeyDown);
 
     return () => {
       document.body.style.overflow = "visible";
-      window.removeEventListener("keydown", onKeyDown);
     };
   }, []);
 

@@ -26,6 +26,14 @@ const TasksCol: FC<TaskColProps> = ({ tasks, title, status }) => {
     if (currentTask.status === status) return;
 
     dispatch(editTask({ ...currentTask, status: status }));
+
+    if (status === "done") {
+      if (currentTask.subtasks.length > 0) {
+        currentTask.subtasks.forEach((task) =>
+          dispatch(editTask({ ...task, status: "done" }))
+        );
+      }
+    }
   };
 
   const [{ isOver }, drop] = useDrop(

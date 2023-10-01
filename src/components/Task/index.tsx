@@ -40,23 +40,26 @@ const Task: FC<TaskProps> = ({ task }) => {
   const onCloseModal = () => {
     const description = editorRef.current?.getContent();
 
-    if (description) {
-      if (!taskTitle) return;
+    if (!taskTitle) return;
 
-      dispatch(
-        editTask({
-          ...task,
-          title: taskTitle,
-          description: description,
-        })
-      );
-    }
+    dispatch(
+      editTask({
+        ...task,
+        title: taskTitle,
+        description: description ? description : task.description,
+      })
+    );
 
     setVisibleModal(!visibleModal);
   };
 
   const onTaskDelete = (id: string) => {
     dispatch(removeTask(id));
+
+    if (task.subtasks.length > 0) {
+      task.subtasks.forEach((task) => dispatch(removeTask(task.id)));
+    }
+
     onCloseModal();
   };
 
@@ -83,9 +86,6 @@ const Task: FC<TaskProps> = ({ task }) => {
               <Input
                 value={taskTitle}
                 onChange={(e) => setTaskTitle(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.code === "Escape") onCloseModal();
-                }}
               />
             </div>
             <div className={styles.manageBlock}>
