@@ -4,18 +4,17 @@ import { useParams, Link } from "react-router-dom";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { addTask } from "../../store/actions/tasks";
-import { ITask } from "../../store/types";
+import { ITask, TaskStatus } from "../../store/types";
 
 import Button from "../../ui/Button";
 import Input from "../../ui/Input";
-import Task from "../../components/Task";
+import TasksCol from "../../components/TasksCol";
 
 import styles from "./styles.module.css";
 import Modal from "../../ui/Modal";
 
 const Tasks = () => {
   const { projectId } = useParams();
-
   const tasks = useAppSelector((state) => state.tasks.tasks).filter(
     (task) => task.projectId === projectId
   );
@@ -49,6 +48,12 @@ const Tasks = () => {
     setValue("");
     onCloseAddModal();
   };
+
+  const cols: { id: number; title: string; status: TaskStatus }[] = [
+    { id: 0, title: "Queue", status: "queue" },
+    { id: 1, title: "Development", status: "dev" },
+    { id: 2, title: "Done", status: "done" },
+  ];
 
   return (
     <div className={styles.container}>
@@ -87,36 +92,14 @@ const Tasks = () => {
       <h1 className={styles.title}>Задачи</h1>
       <Button onClick={onCloseAddModal}>Создать задачу</Button>
       <div className={styles.tasks}>
-        <div className={styles.col}>
-          <h2 className={styles.titleCol}>Queue</h2>
-          <div className={styles.colInner}>
-            {tasks
-              .filter((task) => task.status === "queue")
-              .map((task) => (
-                <Task task={task} key={task.id} />
-              ))}
-          </div>
-        </div>
-        <div className={styles.col}>
-          <h2 className={styles.titleCol}>Development</h2>
-          <div className={styles.colInner}>
-            {tasks
-              .filter((task) => task.status === "dev")
-              .map((task) => (
-                <Task task={task} key={task.id} />
-              ))}
-          </div>
-        </div>
-        <div className={styles.col}>
-          <h2 className={styles.titleCol}>Done</h2>
-          <div className={styles.colInner}>
-            {tasks
-              .filter((task) => task.status === "done")
-              .map((task) => (
-                <Task task={task} key={task.id} />
-              ))}
-          </div>
-        </div>
+        {cols.map((col) => (
+          <TasksCol
+            key={col.id}
+            title={col.title}
+            status={col.status}
+            tasks={tasks}
+          />
+        ))}
       </div>
     </div>
   );

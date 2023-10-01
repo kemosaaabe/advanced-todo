@@ -1,0 +1,23 @@
+.col:not(:last-child) {
+  border-right: 1px solid var(--color-lavender);
+}
+
+.colInner {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.titleCol {
+  padding: 0.5rem 1rem;
+
+  font-family: var(--font-montserrat);
+  font-weight: 500;
+  font-size: var(--size-lg);
+  text-align: center;
+}
+
+.activeCol {
+  background-color: rgba(var(--color-lavender-rgb), 0.15);
+}

@@ -4,7 +4,12 @@
   font-size: var(--size-md);
   font-weight: 400;
 
-  border-bottom: 1px solid var(--color-puce);
+  background-color: rgba(var(--color-lavender-rgb), 0.35);
+  border-radius: 1rem;
 
   cursor: pointer;
+}
+
+.dragTask {
+  opacity: 0.35;
 }

@@ -26,26 +26,6 @@
   margin-top: 2rem;
 }
 
-.col:not(:last-child) {
-  border-right: 1px solid var(--color-lavender);
-}
-
-.colInner {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.titleCol {
-  padding: 0 1rem;
-
-  font-family: var(--font-montserrat);
-  font-weight: 500;
-  font-size: var(--size-lg);
-  text-align: center;
-}
-
 /* Modal */
 
 .titleModal {
