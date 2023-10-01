@@ -25,7 +25,10 @@ const Projects = () => {
   const onAddProject = () => {
     if (!value) return;
 
-    const project = { id: String(projects.length + 1), title: value };
+    const project = {
+      id: String(Number(projects[projects.length - 1].id) + 1),
+      title: value,
+    };
     dispatch(addProject(project));
 
     setValue("");

@@ -1,5 +1,6 @@
 .button {
   padding: 0.75rem 2rem;
+  display: block;
 
   font-family: var(--font-montserrat);
   font-weight: 500;

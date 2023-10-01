@@ -31,7 +31,7 @@ const Tasks = () => {
     if (!value) return;
 
     const task: ITask = {
-      id: String(tasks.length + 1),
+      id: String(Number(tasks[tasks.length - 1].id) + 1),
       projectId: String(projectId),
       title: value,
       description: "",
