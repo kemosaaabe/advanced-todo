@@ -18,21 +18,26 @@ interface TaskColProps {
 const TasksCol: FC<TaskColProps> = ({ tasks, title, status }) => {
   const dispatch = useAppDispatch();
 
-  const [{ isOver }, drop] = useDrop(() => ({
-    accept: "task",
-    drop: (item: { id: string }) => addTaskToCol(item.id),
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
-    }),
-  }));
-
   const addTaskToCol = (id: string) => {
     const currentTask = tasks.find((task) => task.id === id);
 
     if (!currentTask) return;
 
+    if (currentTask.status === status) return;
+
     dispatch(editTask({ ...currentTask, status: status }));
   };
+
+  const [{ isOver }, drop] = useDrop(
+    () => ({
+      accept: "task",
+      drop: (item: { id: string }) => addTaskToCol(item.id),
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+      }),
+    }),
+    [tasks]
+  );
 
   return (
     <div className={`${styles.col} ${isOver && styles.activeCol}`} ref={drop}>
