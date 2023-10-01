@@ -26,7 +26,7 @@ const Projects = () => {
     if (!value) return;
 
     const project = {
-      id: String(Number(projects[projects.length - 1].id) + 1),
+      id: String(new Date().getTime()),
       title: value,
     };
     dispatch(addProject(project));

@@ -31,7 +31,7 @@ const Tasks = () => {
     if (!value) return;
 
     const task: ITask = {
-      id: String(Number(tasks[tasks.length - 1].id) + 1),
+      id: String(new Date().getTime()),
       projectId: String(projectId),
       title: value,
       description: "",
@@ -39,6 +39,7 @@ const Tasks = () => {
       workTime: null,
       finished: null,
       files: [],
+      subtasks: [],
       priority: null,
       status: "queue",
     };

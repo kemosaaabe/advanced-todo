@@ -120,6 +120,10 @@ const Task: FC<TaskProps> = ({ task }) => {
                     ></div>
                   </div>
                 </div>
+                <div className={styles.block}>
+                  <img src="/assets/images/status.svg" alt="status" />
+                  Статус: {task.status}
+                </div>
               </div>
               <div className={styles.col}>
                 <div className={styles.block}>
@@ -155,7 +159,7 @@ const Task: FC<TaskProps> = ({ task }) => {
               />
             </div>
 
-            <Subtasks />
+            <Subtasks parentTask={task} />
             <Comments />
 
             <Button onClick={() => onTaskDelete(task.id)}>
@@ -167,7 +171,9 @@ const Task: FC<TaskProps> = ({ task }) => {
       <div
         ref={drag}
         data-priority={task.priority}
-        className={`${styles.task} ${isDragging && styles.dragTask}`}
+        className={`${styles.task} ${
+          task.status === "done" && styles.taskDone
+        } ${isDragging && styles.dragTask}`}
         onClick={onCloseModal}
       >
         {task.title}

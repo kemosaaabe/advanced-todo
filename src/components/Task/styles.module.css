@@ -10,6 +10,11 @@
   cursor: pointer;
 }
 
+.taskDone {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
 .task[data-priority="low"] {
   background-color: rgba(var(--color-blue-rgb), 0.35);
 }

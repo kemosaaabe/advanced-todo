@@ -8,3 +8,20 @@
 .subtasks {
   margin-bottom: 2rem;
 }
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.titleModal {
+  margin-bottom: 1rem;
+
+  font-family: var(--font-montserrat);
+}
+
+.buttonAdd {
+  margin-top: 1.5rem;
+}

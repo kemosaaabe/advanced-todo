@@ -50,6 +50,7 @@ export type TaskStatus = "queue" | "dev" | "done";
 
 export interface ITask {
   id: string;
+  parentTask?: string;
   projectId: string;
   title: string;
   description: string;
@@ -59,7 +60,7 @@ export interface ITask {
   priority: TaskPriority | null;
   status: TaskStatus;
   files: string[];
-  subtasks?: ITask[];
+  subtasks: ITask[];
 }
 
 export interface AddTaskAction {
