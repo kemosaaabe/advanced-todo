@@ -61,7 +61,14 @@
 }
 
 .attachFile {
-  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.files {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  gap: 1rem;
 }
 
 .priorities {

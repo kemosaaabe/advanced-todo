@@ -10,6 +10,7 @@ const initialState: TaskState = {
       created: new Date(),
       workTime: new Date(),
       finished: new Date(),
+      files: [],
       priority: "low",
       status: "queue",
     },

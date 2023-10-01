@@ -58,6 +58,7 @@ export interface ITask {
   finished: Date | null;
   priority: TaskPriority | null;
   status: TaskStatus;
+  files: string[];
   subtasks?: ITask[];
 }
 

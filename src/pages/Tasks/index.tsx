@@ -38,6 +38,7 @@ const Tasks = () => {
       created: new Date(),
       workTime: null,
       finished: null,
+      files: [],
       priority: null,
       status: "queue",
     };

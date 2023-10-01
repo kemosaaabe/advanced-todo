@@ -1,0 +1,16 @@
+.uploader {
+  margin-bottom: 1rem;
+}
+
+.uploaderInner {
+  display: flex;
+  align-items: center;
+}
+
+.uploader label {
+  cursor: pointer;
+}
+
+.uploader input {
+  display: none;
+}

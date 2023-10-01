@@ -8,6 +8,7 @@ import Input from "../../ui/Input";
 import Button from "../../ui/Button";
 import Subtasks from "../Subtasks";
 import Comments from "../Comments";
+import Uploader from "../Uploader";
 
 import { useAppDispatch } from "../../app/hooks";
 import { editTask, removeTask } from "../../store/actions/tasks";
@@ -69,6 +70,10 @@ const Task: FC<TaskProps> = ({ task }) => {
     dispatch(editTask({ ...task, priority: priority }));
   };
 
+  const onUploadComplete = (files: string[]) => {
+    dispatch(editTask({ ...task, files: [...task.files, ...files] }));
+  };
+
   return (
     <div>
       {visibleModal &&
@@ -86,8 +91,16 @@ const Task: FC<TaskProps> = ({ task }) => {
             <div className={styles.manageBlock}>
               <div className={styles.col}>
                 <div className={styles.block}>
-                  <img src="/assets/images/file.svg" alt="file" />
-                  <span className={styles.attachFile}>Прикрепить файлы</span>
+                  <div className={styles.attachFile}>
+                    <Uploader onUploadComplete={onUploadComplete} />
+                    {task.files.length > 0 ? (
+                      <div className={styles.files}>
+                        {task.files.map((file, index) => (
+                          <div key={index}>{file}</div>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
                 </div>
                 <div className={styles.block}>
                   <img src="/assets/images/priority.svg" alt="priority" />
