@@ -22,14 +22,16 @@ const Tasks = () => {
 
   const dispatch = useAppDispatch();
 
-  const [visibleModal, setVisibleModal] = React.useState(false);
+  const [visibleAddModal, setVisibleAddModal] = React.useState(false);
   const [value, setValue] = React.useState("");
 
-  const onCloseModal = () => {
-    setVisibleModal(!visibleModal);
+  const onCloseAddModal = () => {
+    setVisibleAddModal(!visibleAddModal);
   };
 
   const onAddTask = () => {
+    if (!value) return;
+
     const task: ITask = {
       id: String(tasks.length + 1),
       projectId: String(projectId),
@@ -45,14 +47,14 @@ const Tasks = () => {
     dispatch(addTask(task));
 
     setValue("");
-    onCloseModal();
+    onCloseAddModal();
   };
 
   return (
     <div className={styles.container}>
-      {visibleModal &&
+      {visibleAddModal &&
         createPortal(
-          <Modal onClose={onCloseModal}>
+          <Modal onClose={onCloseAddModal}>
             <h2 className={styles.titleModal}>Добавить задачу</h2>
             <div>
               <Input
@@ -83,7 +85,7 @@ const Tasks = () => {
         />
       </Link>
       <h1 className={styles.title}>Задачи</h1>
-      <Button onClick={onCloseModal}>Создать задачу</Button>
+      <Button onClick={onCloseAddModal}>Создать задачу</Button>
       <div className={styles.tasks}>
         <div className={styles.col}>
           <h2 className={styles.titleCol}>Queue</h2>
