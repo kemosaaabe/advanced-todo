@@ -13,6 +13,8 @@ import Uploader from "../Uploader";
 import { useAppDispatch } from "../../app/hooks";
 import { editTask, removeTask } from "../../store/actions/tasks";
 import { ITask, TaskPriority } from "../../store/types";
+import normalizeDate from "../../utils/normalizeDate";
+import calculateDateDifference from "../../utils/calculateDateDifference";
 
 import styles from "./styles.module.css";
 import { createPortal } from "react-dom";
@@ -127,16 +129,16 @@ const Task: FC<TaskProps> = ({ task }) => {
               </div>
               <div className={styles.col}>
                 <div className={styles.block}>
-                  Дата создания: {task.created.toString()}
+                  Дата создания: {normalizeDate(task.created)}
                 </div>
                 {task.finished && (
                   <div className={styles.block}>
-                    Дата завершения: {task.finished.toString()}
+                    Дата завершения: {normalizeDate(task.finished)}
                   </div>
                 )}
                 {task.workTime && (
                   <div className={styles.block}>
-                    Время в работе: {task.workTime.toString()}
+                    Время в работе: {task.workTime}
                   </div>
                 )}
               </div>

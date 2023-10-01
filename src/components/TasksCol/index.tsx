@@ -8,6 +8,7 @@ import { ITask, TaskStatus } from "../../store/types";
 import Task from "../Task";
 
 import styles from "./styles.module.css";
+import calculateDateDifference from "../../utils/calculateDateDifference";
 
 interface TaskColProps {
   title: string;
@@ -29,15 +30,23 @@ const TasksCol: FC<TaskColProps> = ({ tasks, title, status }) => {
       editTask({
         ...currentTask,
         finished: null,
+        workTime: null,
         status: status,
       })
     );
 
     if (status === "done") {
+      const finishedDate = new Date();
+      const workTime = calculateDateDifference(
+        currentTask.created,
+        finishedDate
+      );
+
       dispatch(
         editTask({
           ...currentTask,
-          finished: new Date(),
+          finished: finishedDate,
+          workTime: workTime,
           status: status,
         })
       );
@@ -48,7 +57,8 @@ const TasksCol: FC<TaskColProps> = ({ tasks, title, status }) => {
             editTask({
               ...task,
               status: "done",
-              finished: new Date(),
+              workTime: workTime,
+              finished: finishedDate,
             })
           )
         );
