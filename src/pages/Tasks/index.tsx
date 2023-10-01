@@ -15,9 +15,8 @@ import Modal from "../../ui/Modal";
 
 const Tasks = () => {
   const { projectId } = useParams();
-  const tasks = useAppSelector((state) => state.tasks.tasks).filter(
-    (task) => task.projectId === projectId
-  );
+  const tasks = useAppSelector((state) => state.tasks.tasks);
+  const filteredTasks = tasks.filter((task) => task.projectId === projectId);
 
   const dispatch = useAppDispatch();
 
@@ -97,7 +96,7 @@ const Tasks = () => {
             key={col.id}
             title={col.title}
             status={col.status}
-            tasks={tasks}
+            tasks={filteredTasks}
           />
         ))}
       </div>
