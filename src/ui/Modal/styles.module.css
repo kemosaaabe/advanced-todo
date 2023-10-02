@@ -19,7 +19,7 @@
   left: 50%;
 
   max-width: var(--max-width);
-  max-height: 100vh;
+  max-height: 85vh;
 
   overflow: auto;
   padding: 1rem 2rem;
