@@ -58,10 +58,6 @@ const Task: FC<TaskProps> = ({ task }) => {
   const onTaskDelete = (id: string) => {
     dispatch(removeTask(id));
 
-    if (task.subtasks.length > 0) {
-      task.subtasks.forEach((task) => dispatch(removeTask(task.id)));
-    }
-
     onCloseModal();
   };
 

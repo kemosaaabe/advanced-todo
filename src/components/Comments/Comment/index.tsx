@@ -55,12 +55,6 @@ const Comment: FC<CommentProps> = ({ comment }) => {
 
   const onCommentDelete = (id: string) => {
     dispatch(removeComment(id));
-
-    if (comment.subcomments.length > 0) {
-      comment.subcomments.forEach((comment) =>
-        dispatch(removeComment(comment.id))
-      );
-    }
   };
 
   return (

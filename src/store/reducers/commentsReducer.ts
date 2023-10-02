@@ -16,11 +16,13 @@ const commentsReducer = (
       };
 
     case CommentActionTypes.REMOVE_COMMENT:
+      const id = action.payload;
+
       return {
         ...state,
-        comments: state.comments.filter(
-          (comment) => comment.id !== action.payload
-        ),
+        comments: state.comments
+          .filter((comment) => comment.id !== id)
+          .filter((comment) => comment.parentCommentId !== id),
       };
 
     case CommentActionTypes.EDIT_COMMENT:
