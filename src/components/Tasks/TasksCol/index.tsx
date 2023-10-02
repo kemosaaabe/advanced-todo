@@ -1,14 +1,14 @@
 import { FC } from "react";
 import { useDrop } from "react-dnd";
 
-import { useAppDispatch } from "../../app/hooks";
-import { editTask } from "../../store/actions/tasks";
-import { ITask, TaskStatus } from "../../store/types";
+import { useAppDispatch } from "../../../app/hooks";
+import { editTask, updateSubtasksStatus } from "../../../store/actions/tasks";
+import { ITask, TaskStatus } from "../../../store/types";
 
 import Task from "../Task";
 
 import styles from "./styles.module.css";
-import calculateDateDifference from "../../utils/calculateDateDifference";
+import calculateDateDifference from "../../../utils/calculateDateDifference";
 
 interface TaskColProps {
   title: string;
@@ -46,16 +46,7 @@ const TasksCol: FC<TaskColProps> = ({ tasks, title, status }) => {
       );
 
       if (currentTask.subtasks.length > 0) {
-        currentTask.subtasks.forEach((task) =>
-          dispatch(
-            editTask({
-              ...task,
-              status: "done",
-              workTime: calculateDateDifference(task.created, new Date()),
-              finished: new Date(),
-            })
-          )
-        );
+        dispatch(updateSubtasksStatus(currentTask, status));
       }
     }
   };

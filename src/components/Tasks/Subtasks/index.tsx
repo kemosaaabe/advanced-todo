@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import { createPortal } from "react-dom";
 
-import { ITask } from "../../store/types";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { addTask, editTask } from "../../store/actions/tasks";
+import { ITask } from "../../../store/types";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { addTask, editTask } from "../../../store/actions/tasks";
 
-import Button from "../../ui/Button";
-import Modal from "../../ui/Modal";
-import Input from "../../ui/Input";
+import Button from "../../../ui/Button";
+import Modal from "../../../ui/Modal";
+import Input from "../../../ui/Input";
 import Task from "../Task";
 
 import styles from "./styles.module.css";

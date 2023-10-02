@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import { useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../../app/hooks";
 
-import Comment from "../Comments/Comment";
+import Comment from "../Comment";
 
 import styles from "./styles.module.css";
 

@@ -41,6 +41,7 @@ export enum TaskActionTypes {
   ADD_TASK = "ADD_TASK",
   REMOVE_TASK = "REMOVE_TASK",
   EDIT_TASK = "EDIT_TASK",
+  UPDATE_SUBTASKS_STATUS = "UPDATE_SUBTASKS_STATUS",
 }
 
 export type TaskPriority = "low" | "medium" | "high";
@@ -76,7 +77,16 @@ export interface EditTaskAction {
   payload: ITask;
 }
 
-export type TaskAction = AddTaskAction | RemoveTaskAction | EditTaskAction;
+export interface UpdateTaskStatusAction {
+  type: TaskActionTypes.UPDATE_SUBTASKS_STATUS;
+  payload: { parent: ITask; status: TaskStatus };
+}
+
+export type TaskAction =
+  | AddTaskAction
+  | RemoveTaskAction
+  | EditTaskAction
+  | UpdateTaskStatusAction;
 
 export interface TaskState {
   tasks: ITask[];

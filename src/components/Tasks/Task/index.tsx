@@ -3,18 +3,17 @@ import { useDrag } from "react-dnd";
 import { Editor } from "@tinymce/tinymce-react";
 import { Editor as TinyMCEEditor } from "tinymce";
 
-import Modal from "../../ui/Modal";
-import Input from "../../ui/Input";
-import Button from "../../ui/Button";
+import Modal from "../../../ui/Modal";
+import Input from "../../../ui/Input";
+import Button from "../../../ui/Button";
 import Subtasks from "../Subtasks";
-import Comments from "../Comments";
-import Uploader from "../Uploader";
+import Comments from "../../Comments";
+import Uploader from "../../Uploader";
 
-import { useAppDispatch } from "../../app/hooks";
-import { editTask, removeTask } from "../../store/actions/tasks";
-import { ITask, TaskPriority } from "../../store/types";
-import normalizeDate from "../../utils/normalizeDate";
-import calculateDateDifference from "../../utils/calculateDateDifference";
+import { useAppDispatch } from "../../../app/hooks";
+import { editTask, removeTask } from "../../../store/actions/tasks";
+import { ITask, TaskPriority } from "../../../store/types";
+import normalizeDate from "../../../utils/normalizeDate";
 
 import styles from "./styles.module.css";
 import { createPortal } from "react-dom";

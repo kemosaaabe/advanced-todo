@@ -14,7 +14,7 @@ import Input from "../../../ui/Input";
 import Button from "../../../ui/Button";
 
 import styles from "./styles.module.css";
-import Subcomments from "../../Subcomments";
+import Subcomments from "../Subcomments";
 
 interface CommentProps {
   comment: IComment;

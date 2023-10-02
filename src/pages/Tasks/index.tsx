@@ -9,7 +9,7 @@ import { ITask, TaskStatus } from "../../store/types";
 
 import Button from "../../ui/Button";
 import Input from "../../ui/Input";
-import TasksCol from "../../components/TasksCol";
+import TasksCol from "../../components/Tasks/TasksCol";
 
 import styles from "./styles.module.css";
 import Modal from "../../ui/Modal";

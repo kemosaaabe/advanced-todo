@@ -1,4 +1,5 @@
 import { TaskActionTypes, TaskAction, TaskState } from "../types";
+import calculateDateDifference from "../../utils/calculateDateDifference";
 
 const initialState: TaskState = {
   tasks: [
@@ -40,6 +41,23 @@ const tasksReducer = (state = initialState, action: TaskAction): TaskState => {
         tasks: state.tasks
           .filter((task) => task.id !== id)
           .filter((task) => task.parentTask !== id),
+      };
+    case TaskActionTypes.UPDATE_SUBTASKS_STATUS:
+      const parentTask = action.payload.parent;
+      const status = action.payload.status;
+
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.parentTask === parentTask.id
+            ? {
+                ...task,
+                status: status,
+                finished: new Date(),
+                workTime: calculateDateDifference(task.created, new Date()),
+              }
+            : task
+        ),
       };
     default:
       return state;
