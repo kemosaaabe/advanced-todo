@@ -25,7 +25,7 @@ const Uploader: FC<UploaderProps> = ({ onUploadComplete }) => {
   return (
     <div className={styles.uploader}>
       <div className={styles.uploaderInner}>
-        <img src="/assets/images/file.svg" alt="file" />
+        <img src="assets/images/file.svg" alt="file" />
         <label htmlFor="upload" className={styles.attachFile}>
           Прикрепить файлы
         </label>

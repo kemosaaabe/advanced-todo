@@ -23,7 +23,7 @@ const Modal: FC<ModalProps> = ({ onClose, children }) => {
         <img
           onClick={onClose}
           className={styles.closeIcon}
-          src="/assets/images/close.svg"
+          src="assets/images/close.svg"
           alt="close"
         />
         {children}

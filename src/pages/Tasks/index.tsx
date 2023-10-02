@@ -1,6 +1,6 @@
 import React from "react";
 import { createPortal } from "react-dom";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useParams, Link } from "react-router-dom";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
@@ -25,7 +25,7 @@ const Tasks = () => {
 
   React.useEffect(() => {
     if (!project) navigate("/");
-  }, []);
+  }, [project, navigate]);
 
   const tasks = useAppSelector((state) => state.tasks.tasks);
 
@@ -164,7 +164,7 @@ const Tasks = () => {
       <Link to="/">
         <img
           className={styles.arrow}
-          src="/assets/images/arrow.svg"
+          src="assets/images/arrow.svg"
           alt="arrow back"
         />
       </Link>

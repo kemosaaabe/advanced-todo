@@ -82,7 +82,7 @@ const Comment: FC<CommentProps> = ({ comment }) => {
       <span className={styles.commentText}>
         {comment.title}
         <img
-          src="/assets/images/trash.svg"
+          src="assets/images/trash.svg"
           alt="remove"
           onClick={() => onCommentDelete(comment.id)}
         />

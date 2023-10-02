@@ -101,7 +101,7 @@ const Task: FC<TaskProps> = ({ task }) => {
                   </div>
                 </div>
                 <div className={styles.block}>
-                  <img src="/assets/images/priority.svg" alt="priority" />
+                  <img src="assets/images/priority.svg" alt="priority" />
                   Выбрать приоритет ({task.priority}):
                   <div className={styles.priorities} onClick={onPrioritySelect}>
                     <div
@@ -119,7 +119,7 @@ const Task: FC<TaskProps> = ({ task }) => {
                   </div>
                 </div>
                 <div className={styles.block}>
-                  <img src="/assets/images/status.svg" alt="status" />
+                  <img src="assets/images/status.svg" alt="status" />
                   Статус: {task.status}
                 </div>
               </div>
