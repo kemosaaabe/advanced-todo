@@ -1,5 +1,6 @@
 import React from "react";
 import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
 import { useParams, Link } from "react-router-dom";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
@@ -12,28 +13,44 @@ import TasksCol from "../../components/TasksCol";
 
 import styles from "./styles.module.css";
 import Modal from "../../ui/Modal";
+import { editProject, removeProject } from "../../store/actions/projects";
 
 const Tasks = () => {
   const { projectId } = useParams();
+
   const tasks = useAppSelector((state) => state.tasks.tasks);
+
+  const project = useAppSelector((state) => state.projects.projects).find(
+    (project) => project.id === projectId
+  );
+
   const filteredTasks = tasks.filter((task) => task.projectId === projectId);
 
   const dispatch = useAppDispatch();
 
   const [visibleAddModal, setVisibleAddModal] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  const [visibleEditModal, setVisibleEditModal] = React.useState(false);
+
+  const [projectName, setProjectName] = React.useState("");
+  const [taskTitle, setTaskTitle] = React.useState("");
+
+  const navigate = useNavigate();
 
   const onCloseAddModal = () => {
     setVisibleAddModal(!visibleAddModal);
   };
 
+  const onCloseEditModal = () => {
+    setVisibleEditModal(!visibleEditModal);
+  };
+
   const onAddTask = () => {
-    if (!value) return;
+    if (!taskTitle) return;
 
     const task: ITask = {
       id: String(new Date().getTime()),
       projectId: String(projectId),
-      title: value,
+      title: taskTitle,
       description: "",
       created: new Date(),
       workTime: null,
@@ -46,8 +63,21 @@ const Tasks = () => {
 
     dispatch(addTask(task));
 
-    setValue("");
+    setTaskTitle("");
     onCloseAddModal();
+  };
+
+  const onEditProject = (id: string) => {
+    dispatch(editProject(id, projectName));
+
+    setProjectName("");
+    onCloseEditModal();
+  };
+
+  const onDeleteProject = (id: string) => {
+    dispatch(removeProject(id));
+
+    navigate("/");
   };
 
   const cols: { id: number; title: string; status: TaskStatus }[] = [
@@ -64,10 +94,10 @@ const Tasks = () => {
             <h2 className={styles.titleModal}>Добавить задачу</h2>
             <div>
               <Input
-                value={value}
+                value={taskTitle}
                 placeholder="Название задачи"
                 onChange={(e) => {
-                  setValue(e.target.value);
+                  setTaskTitle(e.target.value);
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
@@ -83,6 +113,39 @@ const Tasks = () => {
           document.body
         )}
 
+      {visibleEditModal &&
+        createPortal(
+          <Modal onClose={onCloseEditModal}>
+            <h2 className={styles.titleModal}>Изменить название проекта</h2>
+            <div>
+              <Input
+                value={projectName}
+                placeholder="Новое название"
+                onChange={(e) => {
+                  setProjectName(e.target.value);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    if (!projectId) return;
+                    onEditProject(projectId);
+                  }
+                }}
+              />
+            </div>
+            <div className={styles.buttonAdd}>
+              <Button
+                onClick={() => {
+                  if (!projectId) return;
+                  onEditProject(projectId);
+                }}
+              >
+                Добавить
+              </Button>
+            </div>
+          </Modal>,
+          document.body
+        )}
+
       <Link to="/">
         <img
           className={styles.arrow}
@@ -90,8 +153,20 @@ const Tasks = () => {
           alt="arrow back"
         />
       </Link>
-      <h1 className={styles.title}>Задачи</h1>
-      <Button onClick={onCloseAddModal}>Создать задачу</Button>
+      <h1 className={styles.title}>{project ? project.title : null}</h1>
+      <div className={styles.buttons}>
+        <Button onClick={onCloseAddModal}>Создать задачу</Button>
+        <Button onClick={onCloseEditModal}>Изменить название проекта</Button>
+        <Button
+          onClick={() => {
+            if (!projectId) return;
+            onDeleteProject(projectId);
+          }}
+        >
+          Удалить проект
+        </Button>
+      </div>
+
       <div className={styles.tasks}>
         {cols.map((col) => (
           <TasksCol

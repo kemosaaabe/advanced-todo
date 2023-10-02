@@ -36,17 +36,11 @@ const TasksCol: FC<TaskColProps> = ({ tasks, title, status }) => {
     );
 
     if (status === "done") {
-      const finishedDate = new Date();
-      const workTime = calculateDateDifference(
-        currentTask.created,
-        finishedDate
-      );
-
       dispatch(
         editTask({
           ...currentTask,
-          finished: finishedDate,
-          workTime: workTime,
+          finished: new Date(),
+          workTime: calculateDateDifference(currentTask.created, new Date()),
           status: status,
         })
       );
@@ -57,8 +51,8 @@ const TasksCol: FC<TaskColProps> = ({ tasks, title, status }) => {
             editTask({
               ...task,
               status: "done",
-              workTime: workTime,
-              finished: finishedDate,
+              workTime: calculateDateDifference(task.created, new Date()),
+              finished: new Date(),
             })
           )
         );

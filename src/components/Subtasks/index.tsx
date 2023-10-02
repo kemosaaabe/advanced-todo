@@ -87,7 +87,7 @@ const Subtasks: FC<SubtasksProps> = ({ parentTask }) => {
       {subtasks && (
         <div className={styles.tasks}>
           {subtasks.map((task) => (
-            <Task task={task} />
+            <Task key={task.id} task={task} />
           ))}
         </div>
       )}

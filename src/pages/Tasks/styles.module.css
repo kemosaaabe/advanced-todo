@@ -17,6 +17,12 @@
   font-size: var(--size-xl);
 }
 
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 /* Tasks */
 
 .tasks {
