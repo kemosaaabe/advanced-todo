@@ -2,21 +2,7 @@ import { TaskActionTypes, TaskAction, TaskState } from "../types";
 import calculateDateDifference from "../../utils/calculateDateDifference";
 
 const initialState: TaskState = {
-  tasks: [
-    {
-      id: "1",
-      projectId: "1",
-      title: "Задача",
-      description: "Описание",
-      created: new Date(),
-      workTime: null,
-      finished: null,
-      subtasks: [],
-      files: [],
-      priority: "low",
-      status: "queue",
-    },
-  ],
+  tasks: [],
 };
 
 const tasksReducer = (state = initialState, action: TaskAction): TaskState => {

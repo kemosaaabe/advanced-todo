@@ -33,6 +33,13 @@
 
 /* Modal */
 
+.taskId {
+  font-size: var(--size-sm);
+  font-family: var(--font-montserrat);
+
+  color: var(--color-lavender);
+}
+
 .taskTitle {
   margin-bottom: 2rem;
 }

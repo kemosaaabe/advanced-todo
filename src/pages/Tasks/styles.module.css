@@ -23,6 +23,10 @@
   gap: 1rem;
 }
 
+.search {
+  margin-top: 1rem;
+}
+
 /* Tasks */
 
 .tasks {

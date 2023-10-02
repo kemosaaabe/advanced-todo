@@ -79,6 +79,7 @@ const Task: FC<TaskProps> = ({ task }) => {
       {visibleModal &&
         createPortal(
           <Modal onClose={onCloseModal}>
+            <div className={styles.taskId}>Уникальный номер: {task.id}</div>
             <div className={styles.taskTitle}>
               <Input
                 value={taskTitle}
